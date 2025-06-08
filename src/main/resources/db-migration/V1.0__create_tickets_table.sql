@@ -4,7 +4,7 @@ CREATE TABLE tickets_table (
     description MEDIUMTEXT,
     assignee VARCHAR(100),
     priority VARCHAR(10),
-    status VARCHAR(50),
-    created_time DATETIME(3),
+    status VARCHAR(50) NOT NULL,
+    created_time DATETIME(3) NOT NULL,
     updated_time DATETIME(3)
 );

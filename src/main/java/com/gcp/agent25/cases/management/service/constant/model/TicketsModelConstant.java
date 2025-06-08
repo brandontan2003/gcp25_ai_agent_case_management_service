@@ -6,7 +6,7 @@ public class TicketsModelConstant {
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String ASSIGNEE = "assignee";
-    public static final String priority = "priority";
+    public static final String PRIORITY = "priority";
     public static final String STATUS = "status";
     public static final String CREATED_TIME = "created_time";
     public static final String UPDATED_TIME = "updated_time";
