@@ -1,0 +1,48 @@
+version: "3.7"
+
+services:
+  agent25-case-management-service:
+    init: true
+    build:
+      dockerfile: ./Dockerfile
+    image: agent25-case-management-service:latest
+    env_file:
+      - ./env/docker.env
+    working_dir: /app
+    container_name: agent25-case-management-service
+    depends_on:
+      - agent25-case-management-service-flyway
+    ports:
+      - '8081:8080'
+    restart: on-failure
+
+  agent25-case-management-service-mysql:
+    init: true
+    image: mysql:8.0.26
+    container_name: agent25-case-management-service-mysql
+    env_file:
+      - ./env/docker.env
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  agent25-case-management-service-flyway:
+    init: true
+    image: flyway/flyway
+    container_name: agent25-case-management-service-flyway
+    command: -url='jdbc:mysql://agent25-case-management-service-mysql/case_management_service_db?allowPublicKeyRetrieval=true&useSSL=false' -schemas=case_management_service_db  -user=admin -password=admin -connectRetries=60 repair migrate
+    volumes:
+      - ./src/main/resources/db-migration:/flyway/sql
+    depends_on:
+      - agent25-case-management-service-mysql
+    restart: on-failure
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  default:
+    name: agent25-network

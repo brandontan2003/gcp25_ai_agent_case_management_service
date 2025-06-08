@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: gcp25_ai_agent_case_management_service
+  codec:
+    max-in-memory-size: 100MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    hikari:
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: /api/case
+
+logging:
+  level:
+    root: INFO

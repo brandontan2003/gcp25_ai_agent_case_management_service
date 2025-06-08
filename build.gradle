@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.2-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.gcp.agent25'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/snapshot' }
+    mavenLocal()
+}
+
+ext {
+    AI_AGENT25_COMMON_CORE = '1.0.0'
+    SPRINGBOOT_VERSION = '3.4.4'
+    JUNIT_VERSION = '5.10.0'
+    JUNIT_PLATFORM_VERSION = '1.11.4'
+    LOMBOK_VERSION = '1.18.22'
+    LOGGER_VERSION = '2.1.0-alpha1'
+    MODEL_MAPPER_VERSION = '3.1.0'
+    COMMONS_IO_VERSION = '2.18.0'
+    H2_DATABASE_VERSION = '2.3.232'
+    FLYWAY_VERSION = '11.8.2'
+    MYSQL_CONNECTOR_VERSION = '9.3.0'
+    JSON_ASSERT_VERSION = '1.5.0'
+    MOCK_WEB_SERVER_VERSION = '4.12.0'
+    AWS_VERSION = '2.31.54'
+}
+
+dependencies {
+    implementation "com.gcp.agent25:gcp25_ai_agent_common_core:${AI_AGENT25_COMMON_CORE}"
+
+    implementation "org.modelmapper:modelmapper:${MODEL_MAPPER_VERSION}"
+    implementation "commons-io:commons-io:${COMMONS_IO_VERSION}"
+
+    implementation "org.springframework.boot:spring-boot-starter-webflux:${SPRINGBOOT_VERSION}"
+    implementation "org.springframework.boot:spring-boot-starter-validation:${SPRINGBOOT_VERSION}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${SPRINGBOOT_VERSION}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${SPRINGBOOT_VERSION}"
+    implementation "org.slf4j:slf4j-api:${LOGGER_VERSION}"
+
+    implementation "org.flywaydb:flyway-core:${FLYWAY_VERSION}"
+    implementation "org.flywaydb:flyway-mysql:${FLYWAY_VERSION}"
+    runtimeOnly "com.mysql:mysql-connector-j:${MYSQL_CONNECTOR_VERSION}"
+
+    compileOnly "org.projectlombok:lombok:${LOMBOK_VERSION}"
+    annotationProcessor "org.projectlombok:lombok:${LOMBOK_VERSION}"
+
+    testCompileOnly "org.projectlombok:lombok:${LOMBOK_VERSION}"
+    testAnnotationProcessor "org.projectlombok:lombok:${LOMBOK_VERSION}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:${JUNIT_VERSION}"
+
+    testImplementation "com.h2database:h2:${H2_DATABASE_VERSION}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${SPRINGBOOT_VERSION}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:${JUNIT_PLATFORM_VERSION}"
+    testImplementation "org.skyscreamer:jsonassert:${JSON_ASSERT_VERSION}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${MOCK_WEB_SERVER_VERSION}"
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
