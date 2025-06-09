@@ -10,6 +10,7 @@ import com.gcp.agent25.cases.management.service.repository.TicketRepository;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,11 +32,11 @@ public class TicketService {
             ticket.setAssignee(request.getAssignee());
         }
 
-        if (StringUtils.isNotBlank(request.getStatus().getValue())) {
+        if (!ObjectUtils.isEmpty(request.getStatus())) {
             ticket.setStatus(request.getStatus().getValue());
         }
 
-        if (StringUtils.isNotBlank(request.getPriority().getValue())) {
+        if (!ObjectUtils.isEmpty(request.getPriority())) {
             ticket.setPriority(request.getPriority().getValue());
         }
         return buildRetrieveTicketResponse(repository.save(ticket));

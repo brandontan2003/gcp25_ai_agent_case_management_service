@@ -1,8 +1,8 @@
 package com.gcp.agent25.cases.management.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gcp.agent25.cases.management.service.enums.PriorityEnum;
 import com.gcp.agent25.cases.management.service.enums.TicketStatusEnum;
+import com.gcp.agent25.cases.management.service.enums.PriorityEnum;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

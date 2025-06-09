@@ -1,9 +1,10 @@
 package com.gcp.agent25.cases.management.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gcp.agent25.cases.management.service.enums.PriorityEnum;
 import com.gcp.agent25.cases.management.service.enums.TicketStatusEnum;
+import com.gcp.agent25.cases.management.service.enums.PriorityEnum;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class CreateTicketRequest implements Serializable {
     private String assignee;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private PriorityEnum priority;
-    @NotBlank(message = "status cannot be blank.")
+    @NotNull(message = "status cannot be null.")
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private TicketStatusEnum status;
 
