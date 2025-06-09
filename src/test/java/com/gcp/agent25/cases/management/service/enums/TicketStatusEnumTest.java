@@ -13,10 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TicketStatusEnumTest {
     static Stream<Arguments> test_ticketStatusEnum() {
         return Stream.of(
-                Arguments.of(CRITICAL, CRITICAL.toString()),
-                Arguments.of(MEDIUM, MEDIUM.toString()),
-                Arguments.of(LOW, LOW.toString()),
-                Arguments.of(HIGH, HIGH.toString())
+                Arguments.of(OPEN, OPEN.toString()),
+                Arguments.of(IN_PROGRESS, IN_PROGRESS.toString()),
+                Arguments.of(RESOLVED, RESOLVED.toString())
         );
     }
 
