@@ -1,1 +1,1 @@
-# bh25_microservice_template
+# gcp25_ai_agent_case_management_service
