@@ -52,7 +52,10 @@ public class TicketService {
         ticket.setTitle(request.getTitle());
         ticket.setAssignee(request.getAssignee());
         ticket.setStatus(request.getStatus().getValue());
-        ticket.setPriority(request.getPriority().getValue());
+
+        if (!ObjectUtils.isEmpty(request.getPriority())) {
+            ticket.setPriority(request.getPriority().getValue());
+        }
         return repository.save(ticket);
     }
 
