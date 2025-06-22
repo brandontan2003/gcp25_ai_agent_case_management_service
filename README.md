@@ -25,6 +25,14 @@ This module integrates with the [AI Agent Common Core](https://github.com/brando
 - Docker
 - AI Agent Common Core module - [GitHub Repo](https://github.com/brandontan2003/gcp25_ai_agent_common_core)
 
+> **Important:**
+> - Clone and publish the **AI Agent Common Core** module to your local Maven repository:  
+    [AI Agent Common Core GitHub Repo](https://github.com/brandontan2003/gcp25_ai_agent_common_core)
+>   ```bash
+>   git clone https://github.com/brandontan2003/gcp25_ai_agent_common_core.git
+>   cd gcp25_ai_agent_common_core
+>   ./gradlew clean build publishToMavenLocal
+>   ```  
 
 ### 🛠️ Installation
 
