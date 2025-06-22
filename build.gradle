@@ -19,12 +19,6 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
-    maven { url 'https://repo.spring.io/snapshot' }
-    mavenLocal()
-}
-
 ext {
     AI_AGENT25_COMMON_CORE = '1.0.1'
     SPRINGBOOT_VERSION = '3.4.4'
@@ -76,4 +70,17 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/snapshot' }
+    mavenLocal()
+    maven {
+        url = uri("https://asia-southeast1-maven.pkg.dev/gcp-25-adk-ai-agent/ai-agent-common-core")
+        credentials {
+            username = "_json_key"
+            password = file(System.getenv("GOOGLE_APPLICATION_CREDENTIALS")).text
+        }
+    }
 }
